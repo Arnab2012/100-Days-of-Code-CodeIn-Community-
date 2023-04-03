@@ -1,0 +1,27 @@
+//Max Points on a Line
+class Solution {
+	public int maxPoints(int[][] points) {
+		if (points.length < 3) return points.length;
+		int res = 1;
+		for (int i = 0; i < points.length; i++) {
+			int c = 0;
+			HashMap<Double, Integer> count = new HashMap<>();
+			int[] base = points[i];
+			for (int j = 0; j < points.length; j++) {
+				if (i == j) continue;
+				int[] pt = points[j];
+				if (pt[0] == base[0]) {
+					c++;
+					res = Math.max(res, c);
+				} else {
+					double tg = ((double)pt[1] - base[1]) / (pt[0] - base[0]);
+					int c1 = count.getOrDefault(tg, 0);
+					c1++;
+					res = Math.max(res, c1);
+					count.put(tg, c1);
+				}
+			}
+		}
+		return res + 1;
+	}
+}

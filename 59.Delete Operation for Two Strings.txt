@@ -1,0 +1,27 @@
+//Delete Operation for Two Strings
+class Solution {
+    public int minDistance(String word1, String word2) {
+        int x=word1.length(),y=word2.length();
+        int dp[][]=new int[x+1][y+1];
+        for(int[]a : dp){
+            Arrays.fill(a , -1);
+        }
+    
+        int res=findOperation(x-1,y-1,word1,word2,dp);
+        return x+y-(2*res);
+    }
+    static int findOperation(int x,int y,String s1,String s2,int dp[][])     {
+        if(x<0 || y<0){
+            return 0;
+        }
+        if(dp[x][y]!=-1){
+            return dp[x][y];
+        }
+        if(s1.charAt(x)==s2.charAt(y)){
+            return dp[x][y]=1+findOperation(x-1,y-1,s1,s2,dp);
+        }
+        else{
+            return dp[x][y]=Math.max(findOperation(x,y-1,s1,s2,dp),findOperation(x-1,y,s1,s2,dp));
+        }
+    }  
+}

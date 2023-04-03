@@ -1,0 +1,23 @@
+//Longest Consecutive Sequence
+
+class Solution {
+    public int longestConsecutive(int[] nums) {
+        int ans=0;
+        HashSet<Integer>st=new HashSet<>();
+        for(int i=0;i<nums.length;i++){
+            st.add(nums[i]);
+        }
+        for(int i=0;i<nums.length;i++){
+            if(!st.contains(nums[i]-1)){
+                int j=nums[i];
+                while(st.contains(j)){
+                    j++;
+                }
+                if(ans<j-nums[i]){
+                    ans=j-nums[i];
+                }
+            }
+        }
+        return ans;
+    }
+}

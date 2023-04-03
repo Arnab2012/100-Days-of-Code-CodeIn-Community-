@@ -1,0 +1,20 @@
+//Jump Game
+
+class Solution {
+    public boolean canJump(int[] nums) {
+        int pos=0,des=0,jump=0;
+        for(int i=0;i<nums.length-1;i++){
+            des=Math.max(des,nums[i]+i);
+            if(pos==i){
+                pos=des;
+                jump++;
+            }
+        }
+        if(pos<nums.length-1){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+}

@@ -1,0 +1,28 @@
+//License Key Formatting
+class Solution{
+    static String ReFormatString(String S, int K){
+        // code here
+        int count=0;
+        StringBuilder ans=new StringBuilder();
+        for(int i=S.length()-1;i>=0;i--){
+            char ch=S.charAt(i);
+            if(ch=='-')continue;
+            if(Character.isLowerCase(ch)){
+                ans.append(Character.toUpperCase(ch));
+            }
+            else{
+                ans.append(ch);
+            }
+            count++;
+            if(count==K){
+                ans.append('-');
+                count=0;
+            }
+        }
+        ans.reverse();
+        if(ans.length()>0 && ans.charAt(0)=='-'){
+            ans.deleteCharAt(0);
+        }
+        return ans.toString();
+    }
+}

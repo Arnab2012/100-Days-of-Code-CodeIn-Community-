@@ -1,0 +1,15 @@
+//Reduction Operations to Make the Array Elements Equal
+
+
+class Solution {
+    public int reductionOperations(int[] nums) {
+        Arrays.sort(nums);
+        int c=0;
+        for(int i=nums.length-1;i>0;i--){
+            if(nums[i]!=nums[i-1]){
+                c+=(nums.length-i);
+            }
+        }
+        return c;
+    }
+}

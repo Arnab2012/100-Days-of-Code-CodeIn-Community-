@@ -1,0 +1,31 @@
+//Find all distinct subset (or subsequence) sums
+class Solution
+{
+    public int[] DistinctSum(int[] nums)
+    {
+        // Code here
+        Set<Integer>set=new HashSet<>();
+        boolean[][] dp=new boolean[101][10001];
+        fill(nums,0,0,set,dp);
+        int[]ans=new int[set.size()];
+        int i=0;
+        for(int element:set){
+            ans[i]=element;
+            i++;
+        }
+        Arrays.sort(ans);
+        return ans;
+    }
+    public void fill(int nums[],int ind,int sum,Set<Integer>set,boolean dp[][]){
+        if(ind==nums.length){
+            set.add(sum);
+            return;
+        }
+        if(dp[ind][sum]){
+            return;
+        }
+        dp[ind][sum]=true;
+        fill(nums,ind+1,sum,set,dp);
+        fill(nums,ind+1,sum+nums[ind],set,dp);
+    }
+}

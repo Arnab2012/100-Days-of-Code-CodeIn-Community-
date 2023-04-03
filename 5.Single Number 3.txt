@@ -1,0 +1,33 @@
+//Single Number |||
+
+class Solution {
+    public static int findBit(int n){
+        if(n==0){
+            return 0;
+        }
+        int x=n&(n-1);
+        int y=(int)(Math.log(x^n)/(Math.log(2)));
+        return y+1;    
+
+    } 
+    public int[] singleNumber(int[] nums) {
+        int res=0,c=0;
+        int arr[]=new int[2];
+        for(int i=0;i<nums.length;i++){
+            res=res^nums[i];
+        }
+        int temp=res;
+        int p=(res & (-res));
+        int ind=findBit(p);
+        int BitMask=1<<(ind-1);
+        for(int i=0;i<nums.length;i++){
+            if((nums[i] & BitMask)>0){
+                temp=temp^nums[i];
+            }
+        }
+        arr[0]=temp;
+        int b=temp^res;
+        arr[1]=b;
+        return arr;
+    }
+}

@@ -1,0 +1,30 @@
+//Composite and Prime
+class Solution
+{
+    public boolean isPrime(int n){
+        if(n<=1){
+            return false;
+        }
+        for(int i=2;i<=Math.sqrt(n);i++){
+            if(n%i==0){
+                return false;
+            }
+        }
+        return true;
+    }
+    public int Count(int L, int R)
+    {
+        // code here
+        int prime=0,comp=0;
+        for(int i=L;i<=R;i++){
+            if(i==1)continue;//1 is not composite nor prime
+            if(isPrime(i)){
+                prime++;
+            }
+            else{
+                comp++;
+            }
+        }
+        return comp-prime;
+    }
+}

@@ -1,0 +1,26 @@
+//Word Break
+class Solution {
+    public boolean wordBreak(String s, List wordDict) {
+
+        HashMap<String, Boolean> dp = new HashMap();
+        return find(s, wordDict, dp);
+    }          
+    public boolean find(String s, List<String> wordDict, HashMap<String, Boolean> dp){
+        if(s.equals("") || wordDict.contains(s)){
+            return true;
+        }
+        if(dp.containsKey(s)){
+            return dp.get(s);
+        }
+        for(int i=1; i <s.length(); i++){
+            String sl = s.substring(0, i);
+            String sr = s.substring(i);
+        if(find(sl, wordDict, dp) && find(sr, wordDict, dp)){
+            dp.put(s, true);
+            return true;
+        }
+    }
+    dp.put(s, false);
+    return false;
+    }
+}

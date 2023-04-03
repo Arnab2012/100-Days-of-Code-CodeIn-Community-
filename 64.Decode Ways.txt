@@ -1,0 +1,26 @@
+//Decode Ways
+class Solution {
+    int n= 0;
+    HashMap<Integer, Integer> hm= new HashMap<>();
+    public int numDecodings(String s) {
+        n= s.length();
+        if(n == 0){
+            return 0;
+        }
+        return countPairs(s, 0);
+    }
+    public int countPairs(String s, int index){
+        if(index == n)return 1;
+        if(s.charAt(index) == '0')return 0;
+        
+        if(hm.containsKey(index)){
+            return hm.get(index);
+        }
+        int count= countPairs(s, index+1);
+        if(index < n-1 && ( s.charAt(index) == '1' || (s.charAt(index) == '2' && s.charAt(index+1) <= '6' )  ) ){
+            count+= countPairs(s, index+2);
+        }
+        hm.put(index, count);
+        return count;
+    }
+}

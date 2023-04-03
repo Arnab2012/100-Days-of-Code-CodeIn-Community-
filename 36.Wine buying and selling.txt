@@ -1,0 +1,29 @@
+//Wine buying and selling
+class Solution {
+    int wineSelling(int A[],int N){
+        // code here
+        int i=0,j=0;
+        int ans=0;
+        while(i<N && j<N){
+            while(A[i]<=0){
+                i++;
+                if(i==N)return ans;
+            }
+            while(A[j]>=0){
+                j++;
+                if(j==N)return ans;
+            }
+            if(Math.abs(A[i])>=Math.abs(A[j])){
+                ans+=Math.abs(i-j)*Math.abs(A[j]);
+                A[i]+=A[j];
+                A[j]=0;
+            }
+            else{
+                ans+=Math.abs(i-j)*Math.abs(A[i]);
+                A[j]+=A[i];
+                A[i]=0;
+            }
+        }
+        return ans;
+    }
+}

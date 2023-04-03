@@ -1,0 +1,21 @@
+//The Number of Weak Characters in the Game
+class Solution {
+    public int numberOfWeakCharacters(int[][] Properties) {
+       Arrays.sort(Properties,(a, b)->{
+           if(a[0]!=b[0]){ 
+               return b[0]-a[0];
+           }
+           else {
+               return a[1]-b[1];
+           }
+        });
+        int ans=0,max=Properties[0][1];
+        for(int i=1;i<Properties.length;i++){
+            if(Properties[i][1]<max){
+                ans++;
+            }
+            max=Math.max(max,Properties[i][1]);
+        }
+        return ans;
+    }
+}

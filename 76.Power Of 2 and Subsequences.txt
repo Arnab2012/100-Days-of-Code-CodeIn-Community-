@@ -1,0 +1,23 @@
+//Power Of 2 and Subsequences
+class Solution{
+    static boolean isPowerOfTwo(Long n) {
+        if((n&(n-1))==0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    static Long numberOfSubsequences(int N, ArrayList<Long> A){
+        // code here
+        int c=0;
+        long mod=1000000007;
+        for(Long ele:A){
+            if(isPowerOfTwo(ele)){
+                c++;
+            }
+        }
+        Long ans=(long)(Math.pow(2,c)%mod-1)%mod;
+        return ans;
+    }
+}

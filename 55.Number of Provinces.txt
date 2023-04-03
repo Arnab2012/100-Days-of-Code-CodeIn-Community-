@@ -1,0 +1,26 @@
+//Number of Provinces
+class Solution {
+    public int findCircleNum(int[][] isConnected) {
+        int numOfCity = isConnected.length;
+        int[] visited = new int[numOfCity];
+        List<Integer> province = new ArrayList<>();
+        for (int j = 0; j < numOfCity; j++) {
+            if (visited[j] == 0) {
+                dfs(isConnected, visited, j, province);
+            }
+        }
+        return province.size();
+    }
+    public void dfs(int[][] isConnected, int[] visited, int i, List<Integer> province ) {
+        if(visited[i] == 0) {
+            visited[i] = 1;
+            province.add(i);
+        }
+        for (int j = 0; j < isConnected.length; j++) {
+            if (j != i && isConnected[i][j] == 1 && visited[j] == 0) {
+                visited[j] = 1;
+                dfs(isConnected, visited, j, province);
+            }
+        }
+    }
+}

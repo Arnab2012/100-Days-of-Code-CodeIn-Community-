@@ -1,0 +1,30 @@
+//Bag of Tokens
+class Solution {
+    public int bagOfTokensScore(int[] tokens, int power) {
+        if(tokens.length==0){
+            return 0;
+        }
+        Arrays.sort(tokens);
+        if(power<tokens[0]){
+            return 0;
+        }
+        int low=0,high=tokens.length-1,score=0,max=0;
+        while(low<=high){
+            if(score<0){
+                break;
+            }
+            if(power>=tokens[low]){
+                power-=tokens[low];
+                score++;
+                low++;
+            }
+            else{
+                power+=tokens[high];
+                score--;
+                high--;
+            }
+            max=Math.max(score,max);
+        }
+        return max;
+    }
+}

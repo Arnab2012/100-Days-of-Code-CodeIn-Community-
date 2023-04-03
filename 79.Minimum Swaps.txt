@@ -1,0 +1,18 @@
+//Minimum Swaps
+class Solution {
+    public static int minimumSwaps(int[] c, int[] v,int n,int k,int b,int t) {
+        // code here
+        int blocked=0,ans=0;
+        for(int i=n-1;i>=0;i--){
+            if((c[i]+(v[i]*t))>=b){
+                k--;
+                ans+=blocked;
+                if(k==0)return ans;
+            }
+            else{
+                blocked++;
+            }
+        }
+        return -1;
+    }
+}

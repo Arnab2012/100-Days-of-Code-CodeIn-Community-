@@ -1,0 +1,17 @@
+//Bitwise AND of Numbers Range
+
+class Solution {
+    public int rangeBitwiseAnd(int left, int right) {
+        int diff=right-left;
+        int bits=0;
+        while(diff!=0){
+            bits++;
+            diff>>=1;
+        }
+        int result=left & right;
+        result>>=bits;
+        result<<=bits;
+        
+        return result;
+    }
+}

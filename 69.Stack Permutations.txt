@@ -1,0 +1,24 @@
+//Stack Permutations
+class Solution {
+    public static int isStackPermutation(int n, int[] ip, int[] op) {
+        // code here
+        Stack<Integer>st=new Stack();
+        int i=0,j=0;
+        while(j<n){
+            //store items in stack
+            while(i<n && (st.isEmpty() || st.peek()!=op[j])){
+                st.push(ip[i]);
+                i++;
+            }
+            //pop the items from the stack
+            while(!st.isEmpty() && st.peek()==op[j]){
+                st.pop();
+                j++;
+            }
+            if(i==n && !st.isEmpty() && st.peek()!=op[j]){
+                return 0;
+            }
+        }
+        return 1;
+    }
+}

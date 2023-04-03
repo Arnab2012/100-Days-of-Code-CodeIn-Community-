@@ -1,0 +1,22 @@
+//Bulls and Cows
+class Solution {
+    public String getHint(String secret, String guess) {
+        int[] guess1=new int[10];
+        int[] secret1=new int[10];
+        int bull=0;
+        for(int i=0;i<secret.length();i++){
+            if(secret.charAt(i)==guess.charAt(i)){
+                bull++;
+            }
+            else{
+                guess1[guess.charAt(i)-'0']++;
+                secret1[secret.charAt(i)-'0']++;
+            }
+        }
+        int cow=0;
+        for(int i=0;i<10;i++){
+            cow+=Math.min(guess1[i],secret1[i]);
+        }
+        return bull + "A" + cow + "B";
+    }
+}

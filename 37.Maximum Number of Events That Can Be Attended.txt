@@ -1,0 +1,21 @@
+//Maximum Number of Events That Can Be Attended
+class Solution {
+    public int maxEvents(int[][] events) {
+        Arrays.sort(events,(a,b) -> a[1] == b[1]?a[0]-b[0]:a[1]-b[1]);
+        TreeSet<Integer> ans = new TreeSet<>();
+        for(int i = 1; i<=100000 ; i++){
+            ans.add(i);
+        }
+        int c = 0;
+        for(int i = 0 ; i<events.length ; i++)
+        {
+            Integer available = ans.ceiling(events[i][0]);
+            if(available == null || available > events[i][1])continue;
+            else{
+                c++;
+                ans.remove(available);
+            }
+        }
+        return c;
+    }
+}
